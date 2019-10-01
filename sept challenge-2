@@ -1,0 +1,87 @@
+#include <iostream>
+#include <vector> 
+#include<cmath>
+#include <bits/stdc++.h> 
+using namespace std;
+long long int NcR(int n, int r) 
+{ 
+  
+    
+    long long int p = 1, k = 1; 
+  
+   if (n - r < r) 
+        r = n - r; 
+  
+    if (r != 0) { 
+        while (r) { 
+            p *= n; 
+            k *= r; 
+  
+            long long m = __gcd(p, k); 
+            p /= m; 
+            k /= m; 
+  
+            n--; 
+            r--; 
+        } 
+  
+        
+    } 
+  
+    else
+        p = 1; 
+  
+    
+    return p;
+} 
+  
+
+
+int main() 
+{
+    
+     int t;
+     cin>>t;
+     while(t--)
+     {     int n,k;
+          cin>>n>>k;
+      
+         int f[101]={0};
+        
+         int arr[n];
+        
+         for(int i=0;i<n;i++)
+         {
+             cin>>arr[i];
+             f[arr[i]]++;
+            //  std::cout << arr[i] << std::endl;
+            //  std::cout << f[arr[i]] << std::endl;
+         }
+        //  for(int j=0;j<n;j++)
+        //  {
+        //      std::cout << arr[j] << std::endl;
+        //  }
+        //  for(int l=0;l<101;l++)
+        //  {
+        //      cout << f[l] ;
+        //  }
+         
+         int c; int i;
+         for( i=1;i<101;i++)
+         {
+             c=k-f[i];
+             //std::cout << f[i] << std::endl;
+             if(c<=0)
+             {
+                 break;
+             }
+             k=c;
+             
+         }
+         
+         long long int val = NcR(f[i],k);
+            i=0;c=0;
+         std::cout << val << std::endl;
+     }
+}
+         
